@@ -1,6 +1,6 @@
 import { Container, Input, Text } from "@chakra-ui/react";
 
-const InputText = ({ value, setValue, label, placeholder }) => {
+const InputText = ({ value, setValue, label, placeholder, errText }) => {
   return (
     <Container style={{ margin: 10 }}>
       <Text
@@ -21,6 +21,9 @@ const InputText = ({ value, setValue, label, placeholder }) => {
         placeholder={placeholder}
         size="sm"
       />
+      <Text ml={50} fontSize={12} textAlign={"left"} mb="0px" color={"red.500"}>
+        {errText}
+      </Text>
     </Container>
   );
 };

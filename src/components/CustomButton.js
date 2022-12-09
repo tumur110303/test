@@ -5,6 +5,7 @@ import { BeatLoader } from "react-spinners";
 const CustomButton = ({ isLoading, bgcolor, launch }) => {
   return (
     <Button
+      mt={5}
       color={"gray.500"}
       bgColor={bgcolor}
       isLoading={isLoading}

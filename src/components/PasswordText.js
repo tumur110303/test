@@ -8,7 +8,7 @@ import {
 } from "@chakra-ui/react";
 import React, { useState } from "react";
 
-const PasswordText = ({ placeholder, label, value, setValue }) => {
+const PasswordText = ({ placeholder, label, value, setValue, errText }) => {
   const [show, setShow] = useState(false);
   const handleClick = () => setShow(!show);
 
@@ -44,6 +44,9 @@ const PasswordText = ({ placeholder, label, value, setValue }) => {
           </Button>
         </InputRightElement>
       </InputGroup>
+      <Text ml={50} fontSize={12} textAlign={"left"} mb="0px" color={"red.500"}>
+        {errText}
+      </Text>
     </Container>
   );
 };
