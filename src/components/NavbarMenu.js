@@ -1,5 +1,5 @@
 import React, { useContext } from "react";
-import { Button, Flex, Link, List } from "@chakra-ui/react";
+import { Flex, Link, List } from "@chakra-ui/react";
 import HamburgerMenu from "./HamburgerMenu";
 import LoginContext from "../context/LoginContext";
 
@@ -25,7 +25,7 @@ const NavbarMenu = () => {
           <Link m={2} href="/">
             Нүүр хуудас
           </Link>
-          <Link m={2} href="/" onClick={context.setIsLoggedIn(false)}>
+          <Link m={2} href="/">
             Гарах
           </Link>
         </List>

@@ -26,9 +26,7 @@ const HamburgerMenu = () => {
           <Link href="/">Нүүр хуудас</Link>
         </MenuItem>
         <MenuItem textColor={"gray.600"}>
-          <Link href="/" onClick={context.setIsLoggedIn(false)}>
-            Гарах
-          </Link>
+          <Link href="/">Гарах</Link>
         </MenuItem>
       </MenuList>
     </Menu>

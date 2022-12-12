@@ -1,12 +1,30 @@
-import { Center, Image } from "@chakra-ui/react";
+import { Center, Heading, Image } from "@chakra-ui/react";
 import React from "react";
 import NavbarMenu from "../components/NavbarMenu";
 
 const Home = () => {
   return (
-    <Center w={"100vw"} h={"100vh"} p={5} pt-10>
+    <Center
+      bgImage={
+        "https://images.pexels.com/photos/3374204/pexels-photo-3374204.jpeg"
+      }
+      bgPosition="center"
+      bgRepeat="no-repeat"
+      w={"100vw"}
+      h={"100vh"}
+      p={5}
+      pt-10
+    >
       <NavbarMenu />
-      <Image src="https://pngtree.com/freebackground/summer-beach-background_982371.html" />
+      <Heading
+        fontStyle={"italic"}
+        textAlign={"center"}
+        textColor={"gray.700"}
+        as="h3"
+        size="3xl"
+      >
+        ТАНД ТУСЛАХДАА БИД ХЭЗЭЭД БАЯРТАЙ БАЙХ БОЛНО...
+      </Heading>
     </Center>
   );
 };

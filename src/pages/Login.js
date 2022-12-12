@@ -3,7 +3,6 @@ import CustomButton from "../components/CustomButton";
 import { Center, Collapse, Flex, Text } from "@chakra-ui/react";
 import InputText from "../components/InputText";
 import PasswordText from "../components/PasswordText";
-import axios from "axios";
 import IconCircle from "../components/IconCircle";
 import NavbarMenu from "../components/NavbarMenu";
 import LoginContext from "../context/LoginContext";
@@ -13,58 +12,27 @@ const Login = () => {
 
   const [userName, setUserName] = useState();
   const [password, setPassword] = useState();
-  const [isLoading, setIsLoading] = useState(false);
-  const [userNameNull, setUserNameNull] = useState("");
-  const [passwordNull, setPasswordNull] = useState("");
-  const [errorMessage, setErrorMessage] = useState("");
 
   const loginHandler = () => {
-    setErrorMessage("");
-
-    if (userName === "" || userName === null || userName === undefined) {
-      setUserNameNull("Нэвтрэх нэр оруулна уу!");
-      return;
-    } else setUserNameNull(null);
-
-    if (password === "" || password === null || password === undefined) {
-      setPasswordNull("Нууц үгээ оруулна уу!");
-      return;
-    } else setPasswordNull(null);
-
-    setIsLoading(true);
-    axios
-      .post("http://192.168.8.64:4550", {
-        username: userName,
-        password: password,
-      })
-      .then((result) => {
-        console.log("Амжилттай нэвтэрлээ!... ", result.data);
-        context.setIsLoggedIn(true);
-        console.log("Нэвтэрснийг context мэдсэн: ", context.isLoggedIn);
-        setIsLoading(false);
-      })
-      .catch((error) => {
-        context.setIsLoggedIn(false);
-        setIsLoading(false);
-        if (error.response) {
-          setErrorMessage(error.response.data.message);
-        } else {
-          setErrorMessage(error.message);
-        }
-      });
-
-    setIsLoading(false);
+    context.login(userName, password);
   };
 
   return (
-    <Center w={"100vw"} h={"100vh"}>
+    <Center
+      bgImage={
+        "https://images.pexels.com/photos/3374204/pexels-photo-3374204.jpeg"
+      }
+      bgPosition="center"
+      bgRepeat="no-repeat"
+      w={"100vw"}
+      h={"100vh"}
+    >
       <NavbarMenu />
       <Flex
-        w={1000}
+        w="100vw"
         height={900}
         justifyContent={"center"}
         alignItems={"center"}
-        bg={"red.100"}
       >
         <Flex
           pos={"relative"}
@@ -90,7 +58,7 @@ const Login = () => {
             textAlign={"center"}
             textColor={"gray.800"}
           >
-            {errorMessage === "wrong username or password" ? (
+            {context.errorMessage === "wrong username or password" && (
               <Text
                 ml={50}
                 fontSize={12}
@@ -100,7 +68,7 @@ const Login = () => {
               >
                 Нэвтрэх нэр нууц үг буруу байна.
               </Text>
-            ) : null}
+            )}
             <Text
               textColor={"blue.400"}
               fontWeight={"bold"}
@@ -110,21 +78,22 @@ const Login = () => {
               Нэвтрэх
             </Text>
             <InputText
-              errText={userNameNull}
+              errText={context.errorMessage}
               value={userName}
               setValue={setUserName}
               label="Нэвтрэх нэр эсвэл и-мэйл:"
               placeholder="Нэвтрэх нэр, и-мэйл"
             />
             <PasswordText
-              errText={passwordNull}
+              errText={context.errorMessage}
               value={password}
               setValue={setPassword}
               label="Нууц үг:"
               placeholder="Нууц үг"
             />
             <CustomButton
-              isLoading={isLoading}
+              text="Нэвтрэх"
+              isLoading={context.isLoading}
               launch={loginHandler}
               bgcolor="green.100"
             />
